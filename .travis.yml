@@ -15,9 +15,8 @@ after_success:
     - docker build -t ezztaher/multi-server ./server
     - docker build -t ezztaher/multi-worker ./worker
 
-# log in to docker CLI
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-# Take those images and push them to docker hub
+
 - docker push ezztaher/multi-client
 - docker push ezztaher/multi-nginx
 - docker push ezztaher/multi-server
