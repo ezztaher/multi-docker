@@ -5,14 +5,14 @@ services:
 before_install:
     - docker build -t ezztaher/react-test -f ./client/Dockerfile.dev ./client
 script:
-  - docker run -e CI=true ezztaher/react-test npm test
+    - docker run -e CI=true ezztaher/react-test npm test
 after_success:
     - docker build -t ezztaher/multi-client ./client
     - docker build -t ezztaher/multi-nginx ./nginx
     - docker build -t ezztaher/multi-server ./server
     - docker build -t ezztaher/multi-worker ./worker
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-- docker push ezztaher/multi-client
-- docker push ezztaher/multi-nginx
-- docker push ezztaher/multi-server
-- docker push ezztaher/multi-worker
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push ezztaher/multi-client
+    - docker push ezztaher/multi-nginx
+    - docker push ezztaher/multi-server
+    - docker push ezztaher/multi-worker
